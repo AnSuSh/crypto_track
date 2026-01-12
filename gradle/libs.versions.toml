@@ -7,6 +7,7 @@ ksp = "2.0.0-1.0.23"
 
 composeBom = "2025.12.01"
 androidXActivity = "1.12.2"
+androidXConstraintlayout = "1.1.1"
 androidXCoreSplashScreen = "1.2.0"
 androidXLifecycle = "2.10.0"
 androidXNavigation = "2.9.6"
@@ -49,6 +50,7 @@ androidx-compose-material-icons = { group = "androidx.compose.material", name = 
 
 # Pure Androidx
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidXActivity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidXConstraintlayout" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidXCoreSplashScreen" }
 
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidXLifecycle" }
@@ -89,4 +91,3 @@ hilt-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroi
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
