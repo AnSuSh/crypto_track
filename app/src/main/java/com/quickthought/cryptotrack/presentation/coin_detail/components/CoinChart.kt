@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.asAndroidPath
 import androidx.compose.ui.graphics.asComposePath
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -19,7 +20,10 @@ fun CoinChart(
     modifier: Modifier = Modifier,
     graphColor: Color = Green
 ) {
-    Canvas(modifier = modifier) {
+    Canvas(
+        modifier = modifier
+            .testTag("coin_chart_canvas")
+    ) {
         val transparentGraphColor = graphColor.copy(alpha = 0.5f)
 
         // Find min and max to scale the graph to the screen size

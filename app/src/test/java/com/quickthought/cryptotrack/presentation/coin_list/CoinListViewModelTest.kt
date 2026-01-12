@@ -3,13 +3,18 @@ package com.quickthought.cryptotrack.presentation.coin_list
 import com.quickthought.cryptotrack.core.Resource
 import com.quickthought.cryptotrack.domain.model.Coin
 import com.quickthought.cryptotrack.domain.use_case.get_coins.GetCoinsUseCase
+import com.quickthought.cryptotrack.util.MainDispatcherRule
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
+import org.junit.Rule
 import org.junit.Test
 
 class CoinListViewModelTest {
+
+    @get:Rule
+    val mainDispatcherRule = MainDispatcherRule()
 
     private lateinit var viewModel: CoinListViewModel
     private val mockUseCase: GetCoinsUseCase = mockk()

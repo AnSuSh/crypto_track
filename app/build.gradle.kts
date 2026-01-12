@@ -26,11 +26,14 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.quickthought.cryptotrack.CustomTestRunner"
 
         // https://api.coingecko.com/api/v3/ping?x_cg_demo_api_key=YOUR_API_KEY
         buildConfigField("String", "BASE_URL", "\"https://api.coingecko.com/api/v3/\"")
-        buildConfigField("String", "CG_API_KEY", (keystoreProperties["COIN_GECKO_API_KEY"] as String?)?.let { "\"$it\"" } ?: "")
+        buildConfigField(
+            "String",
+            "CG_API_KEY",
+            (keystoreProperties["COIN_GECKO_API_KEY"] as String?)?.let { "\"$it\"" } ?: "")
     }
 
     signingConfigs {
@@ -44,7 +47,7 @@ android {
     }
 
     buildTypes {
-        debug{
+        debug {
             isMinifyEnabled = false
             isDebuggable = true
             isDefault = true
@@ -110,6 +113,13 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.test.squareup.okhttp3.mockServer)
+
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.compiler)
+
+    testImplementation(libs.hilt.android.testing)
+    kspTest(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.coroutines.test)
@@ -118,7 +128,6 @@ dependencies {
     testImplementation(libs.test.mockk.android)
     testImplementation(libs.test.cash.turbine)
     testImplementation(libs.test.google.truth)
-    testImplementation(libs.test.squareup.okhttp3.mockServer)
 
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)

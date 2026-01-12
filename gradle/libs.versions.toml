@@ -76,6 +76,8 @@ androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-te
 kotlin-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidXJUnit" }
+hilt-android-testing = { group="com.google.dagger", name = "hilt-android-testing", version.ref = "hiltAndroid" }
+hilt-android-compiler = { group="com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroid" }
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 test-mockk-default = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
