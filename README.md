@@ -1,5 +1,10 @@
 # 🚀 CryptoTrack: High-Performance Reactive Android Application
 
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9+-blue.svg)](https://kotlinlang.org)
+[![Compose](https://img.shields.io/badge/Jetpack_Compose-Material3-green.svg)](https://developer.android.com/jetpack/compose)
+[![Architecture](https://img.shields.io/badge/Architecture-MVI--Clean-orange.svg)]()
+[![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+
 **CryptoTrack** is a senior-level cryptocurrency tracking application built with a focus on high-end architecture, reactive UI, and robust testing. It demonstrates mastery of the modern Android stack, aiming for performance, security, and scalability.
 
 ---
