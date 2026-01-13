@@ -7,6 +7,7 @@ ksp = "2.0.0-1.0.23"
 
 composeBom = "2025.12.01"
 androidXActivity = "1.12.2"
+androdXAnnotation = "1.9.1"
 androidXConstraintlayout = "1.1.1"
 androidXCoreSplashScreen = "1.2.0"
 androidXLifecycle = "2.10.0"
@@ -50,6 +51,7 @@ androidx-compose-material-icons = { group = "androidx.compose.material", name = 
 
 # Pure Androidx
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidXActivity" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androdXAnnotation" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidXConstraintlayout" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidXCoreSplashScreen" }
 

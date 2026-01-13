@@ -1,7 +1,9 @@
 package com.quickthought.cryptotrack.data.remote.dto
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class CoinDetailDto(
     val id: String,
     val name: String,
@@ -10,8 +12,10 @@ data class CoinDetailDto(
     @SerializedName("market_data") val marketData: MarketData
 )
 
+@Keep
 data class ImageSource(val large: String)
 
+@Keep
 data class MarketData(
     @SerializedName("current_price") val currentPrice: Map<String, Double>,
     @SerializedName("price_change_percentage_24h") val priceChange24h: Double,

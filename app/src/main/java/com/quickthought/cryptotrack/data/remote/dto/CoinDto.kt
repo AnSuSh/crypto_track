@@ -1,7 +1,9 @@
 package com.quickthought.cryptotrack.data.remote.dto
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class CoinDto(
     val id: String,
     val name: String,

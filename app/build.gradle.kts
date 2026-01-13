@@ -95,6 +95,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation)
 
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.annotation)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.compose)
 
