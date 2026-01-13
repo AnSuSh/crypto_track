@@ -55,10 +55,12 @@ com.skillvault.cryptotrack
 ├── domain              # Clean Kotlin models, Repository interfaces, and UseCases
 └── presentation        # UI State, ViewModels, and Compose screens/components
 
+```
+
 ---
 
 ## 🛠️ Installation & Setup
 1. Clone the repository.
 2. Get a free API key from CoinGecko.
-3. Paste your key into the Local.properties file with `COIN_GECKO_API_KEY` key.
+3. Paste your key into the `local.properties` file with `COIN_GECKO_API_KEY` key.
 4. Build and Run.
