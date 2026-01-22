@@ -3,12 +3,18 @@ package com.quickthought.cryptotrack.presentation.coin_list.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +28,8 @@ import java.util.Locale
 @Composable
 fun CoinListItem(
     coin: Coin,
-    onItemClick: (Coin) -> Unit
+    onItemClick: (Coin) -> Unit,
+    onFavoriteClick: (coinId: String) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -53,6 +60,24 @@ fun CoinListItem(
                 color = if (coin.priceChangePercent24h >= 0) Color.Green else Color.Red,
                 style = MaterialTheme.typography.labelSmall
             )
+        }
+
+        Spacer(modifier = Modifier.size(8.dp))
+
+        // Favorite button
+        IconButton(onClick = { onFavoriteClick(coin.id) }) {
+            if (coin.isFavorite) {
+                Icon(
+                    imageVector = Icons.Filled.Favorite,
+                    contentDescription = "Unfavorite ${coin.name}",
+                    tint = Color.Red
+                )
+            } else {
+                Icon(
+                    imageVector = Icons.Filled.FavoriteBorder,
+                    contentDescription = "Favorite ${coin.name}"
+                )
+            }
         }
     }
 }

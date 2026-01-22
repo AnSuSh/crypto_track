@@ -34,6 +34,14 @@ android {
             "String",
             "CG_API_KEY",
             (keystoreProperties["COIN_GECKO_API_KEY"] as String?)?.let { "\"$it\"" } ?: "")
+
+        ndk {
+            debugSymbolLevel = "FULL"
+        }
+
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
     }
 
     signingConfigs {
@@ -99,6 +107,10 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.compose)
 
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
@@ -121,6 +133,8 @@ dependencies {
 
     testImplementation(libs.hilt.android.testing)
     kspTest(libs.hilt.android.compiler)
+
+    testImplementation(libs.androidx.room.testing)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.coroutines.test)

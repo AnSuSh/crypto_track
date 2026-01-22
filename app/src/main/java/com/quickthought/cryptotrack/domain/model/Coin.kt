@@ -9,5 +9,7 @@ data class Coin(
     val iconUrl: String,
     val high24h: Double = 0.0,
     val low24h: Double = 0.0,
-    val marketCap: Double = 0.0
+    val marketCap: Double = 0.0,
+    // New field to mark favorites in UI (default false to avoid breaking existing flows)
+    val isFavorite: Boolean = false
 )

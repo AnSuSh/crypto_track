@@ -13,5 +13,6 @@ fun CoinDto.toCoin(): Coin {
         priceUsd = currentPrice,
         priceChangePercent24h = priceChange24h,
         iconUrl = imageUrl,
+        isFavorite = false // Explicitly setting default value
     )
 }
