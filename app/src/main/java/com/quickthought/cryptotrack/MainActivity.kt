@@ -7,15 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -38,14 +34,8 @@ class MainActivity : ComponentActivity() {
             CryptoTrackTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    topBar = {
-                        TopAppBar(
-                            title = { Text(stringResource(R.string.app_name)) },
-                            modifier = Modifier
-                                .padding(top = 16.dp)
-                                .heightIn(max = 56.dp)
-                        )
-                    },
+                    // Remove activity-level top bar so individual screens can provide their own app bars
+                    topBar = {},
                     contentWindowInsets = WindowInsets(0.dp)
                 ) { innerPadding ->
                     val navController = rememberNavController()

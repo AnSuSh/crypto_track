@@ -30,6 +30,10 @@ class CoinListViewModel @Inject constructor(
     // Public state that the UI observes (read-only)
     val state: State<CoinListState> = _state
 
+    // Search query maintained in the ViewModel so it survives recompositions
+    private val _searchQuery = mutableStateOf("")
+    val searchQuery: State<String> = _searchQuery
+
     init {
         getCoins()
     }
@@ -78,5 +82,31 @@ class CoinListViewModel @Inject constructor(
 
             // No need to update the state here, as the combined flow will handle it
         }
+    }
+
+    // Update the search query and apply local filter to the already-loaded coins
+    fun updateSearchQuery(query: String) {
+        _searchQuery.value = query
+        applyLocalFilter()
+    }
+
+    private fun applyLocalFilter() {
+        val current = _state.value
+        val query = _searchQuery.value.trim().lowercase()
+
+        if (query.isEmpty()) {
+            // Nothing to filter; keep coins as-is (they're already favorite-first ordered)
+            _state.value = current.copy()
+            return
+        }
+
+        val filtered = current.coins.filter { coin ->
+            coin.name.lowercase().contains(query) || coin.symbol.lowercase().contains(query)
+        }
+
+        // Ensure favorites still come first in the filtered list
+        val reordered = filtered.sortedWith(compareByDescending<Coin> { it.isFavorite }.thenBy { it.name })
+
+        _state.value = current.copy(coins = reordered)
     }
 }
