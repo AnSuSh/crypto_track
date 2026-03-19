@@ -86,6 +86,11 @@ class CoinListViewModel @Inject constructor(
 
     // Update the search query and apply local filter to the already-loaded coins
     fun updateSearchQuery(query: String) {
+        if (query.isBlank()) {
+            _searchQuery.value = ""
+            getCoins()
+            return
+        }
         _searchQuery.value = query
         applyLocalFilter()
     }
@@ -105,7 +110,9 @@ class CoinListViewModel @Inject constructor(
         }
 
         // Ensure favorites still come first in the filtered list
-        val reordered = filtered.sortedWith(compareByDescending<Coin> { it.isFavorite }.thenBy { it.name })
+        val reordered = filtered.sortedWith(compareByDescending<Coin> {
+            it.isFavorite
+        }.thenBy { it.name })
 
         _state.value = current.copy(coins = reordered)
     }

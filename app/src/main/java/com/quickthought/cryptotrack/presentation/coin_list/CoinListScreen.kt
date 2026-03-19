@@ -1,5 +1,6 @@
 package com.quickthought.cryptotrack.presentation.coin_list
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,11 +14,11 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -51,32 +52,50 @@ fun CoinListScreen(
         TopAppBar(
             title = {
                 if (showSearch) {
-                    TextField(
+                    OutlinedTextField(
                         value = query,
                         onValueChange = { viewModel.updateSearchQuery(it) },
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .animateContentSize(),
                         singleLine = true,
-                        placeholder = { Text(text = "Search") }
+                        placeholder = { Text(text = "Search") },
                     )
                 } else {
-                    Text(text = "Coins")
+                    Text(text = "Coins", modifier = Modifier.animateContentSize())
                 }
             },
             actions = {
-                IconButton(onClick = { showSearch = !showSearch }) {
-                    if(showSearch){
-                        Icon(imageVector = Icons.Default.Cancel, contentDescription = "Cancel Search")
+                IconButton(onClick = {
+                    showSearch = !showSearch
+                    if (!showSearch) {
+                        if (query.isBlank()) return@IconButton
+                        viewModel.updateSearchQuery("") // Clear search when closing
+                    }
+                }) {
+                    // Apply Animation during icon change
+                    if (showSearch) {
+                        Icon(
+                            imageVector = Icons.Default.Cancel,
+                            contentDescription = "Cancel Search",
+                            modifier = Modifier.animateContentSize()
+                        )
                     } else {
-                        Icon(imageVector = Icons.Default.Search, contentDescription = "Search")
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = "Search",
+                            modifier = Modifier.animateContentSize()
+                        )
                     }
                 }
             }
         )
 
         // Content list
-        LazyColumn(modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 56.dp) // leave space for the top bar
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 56.dp) // leave space for the top bar
         ) {
             if (state.isLoading) {
                 // Show 10 shimmer items while loading
@@ -84,16 +103,29 @@ fun CoinListScreen(
                     ShimmerCoinItem(brush = brush)
                 }
             } else {
-                items(state.coins) { coin ->
-                    CoinListItem(
-                        coin = coin,
-                        onItemClick = {
-                            navController.navigate(Screen.CoinDetailScreen.route + "/${coin.id}")
-                        },
-                        onFavoriteClick = { coinId ->
-                            viewModel.toggleFavorite(coinId)
-                        }
-                    )
+                val coins = state.coins
+                if (coins.isEmpty()) {
+                    item {
+                        Text(
+                            text = "No coins found.",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(20.dp),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                } else {
+                    items(coins) { coin ->
+                        CoinListItem(
+                            coin = coin,
+                            onItemClick = {
+                                navController.navigate(Screen.CoinDetailScreen.route + "/${coin.id}")
+                            },
+                            onFavoriteClick = {
+                                viewModel.toggleFavorite(coin.id)
+                            }
+                        )
+                    }
                 }
             }
         }

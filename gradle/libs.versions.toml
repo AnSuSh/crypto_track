@@ -5,14 +5,14 @@ coroutines = "1.10.2"
 kotlin = "2.0.0"
 ksp = "2.0.0-1.0.23"
 
-composeBom = "2025.12.01"
+composeBom = "2026.01.00"
 androidXActivity = "1.12.2"
 androdXAnnotation = "1.9.1"
 androidXConstraintlayout = "1.1.1"
 androidXCoreSplashScreen = "1.2.0"
 androidXLifecycle = "2.10.0"
 androidXNavigation = "2.9.6"
-androidXRoom = "2.8.4"
+androidXRoom = "2.7.0"
 
 # Hilt library
 hiltAndroid = "2.57.2"
