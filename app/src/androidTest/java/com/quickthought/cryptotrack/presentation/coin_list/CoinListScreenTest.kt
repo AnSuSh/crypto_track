@@ -1,7 +1,6 @@
 package com.quickthought.cryptotrack.presentation.coin_list
 
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
@@ -18,7 +17,6 @@ import org.junit.Test
 
 @HiltAndroidTest
 class CoinListScreenTest {
-
     @get:Rule(order = 0)
     val hiltRule = HiltAndroidRule(this)
 

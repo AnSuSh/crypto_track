@@ -30,6 +30,6 @@ interface CoinGeckoApi {
 
     @GET("coins/{id}")
     suspend fun getCoinById(
-        @Path("id") id: String
+        @Path("id") id: String,
     ): CoinDetailDto
 }

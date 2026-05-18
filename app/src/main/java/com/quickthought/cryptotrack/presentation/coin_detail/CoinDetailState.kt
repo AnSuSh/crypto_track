@@ -5,5 +5,5 @@ import com.quickthought.cryptotrack.domain.model.CoinFullDetail
 data class CoinDetailState(
     val isLoading: Boolean = false,
     val coinDetail: CoinFullDetail? = null,
-    val error: String = ""
+    val error: String = "",
 )

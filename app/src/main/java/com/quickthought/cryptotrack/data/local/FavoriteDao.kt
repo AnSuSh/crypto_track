@@ -8,8 +8,7 @@ import com.quickthought.cryptotrack.data.local.entity.Favorite
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface FavoriteDao{
-
+interface FavoriteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addFavorite(favorite: Favorite)
 

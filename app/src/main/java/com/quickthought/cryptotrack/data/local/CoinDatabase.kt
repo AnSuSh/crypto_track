@@ -9,8 +9,8 @@ import com.quickthought.cryptotrack.data.local.entity.Favorite
     version = 1,
     exportSchema = true,
 )
-abstract class CoinDatabase: RoomDatabase() {
-    abstract fun favoriteDao() : FavoriteDao
+abstract class CoinDatabase : RoomDatabase() {
+    abstract fun favoriteDao(): FavoriteDao
 
     companion object {
         const val DATABASE_NAME = "crypto_coins_db"

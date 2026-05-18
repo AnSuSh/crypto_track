@@ -8,13 +8,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,26 +29,29 @@ import java.util.Locale
 fun CoinListItem(
     coin: Coin,
     onItemClick: (Coin) -> Unit,
-    onFavoriteClick: (coinId: String) -> Unit
+    onFavoriteClick: (coinId: String) -> Unit,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onItemClick(coin) }
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable { onItemClick(coin) }
+                .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         AsyncImage(
             model = coin.iconUrl,
             contentDescription = null,
-            modifier = Modifier
-                .size(32.dp)
-                .clip(CircleShape)
+            modifier =
+                Modifier
+                    .size(32.dp)
+                    .clip(CircleShape),
         )
         Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = 12.dp)
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .padding(start = 12.dp),
         ) {
             Text(text = coin.name, style = MaterialTheme.typography.titleMedium)
             Text(text = coin.symbol.uppercase(), style = MaterialTheme.typography.bodySmall)
@@ -58,7 +61,7 @@ fun CoinListItem(
             Text(
                 text = "${String.format(Locale.getDefault(), "%.2f", coin.priceChangePercent24h)}%",
                 color = if (coin.priceChangePercent24h >= 0) Color.Green else Color.Red,
-                style = MaterialTheme.typography.labelSmall
+                style = MaterialTheme.typography.labelSmall,
             )
         }
 
@@ -70,12 +73,12 @@ fun CoinListItem(
                 Icon(
                     imageVector = Icons.Filled.Favorite,
                     contentDescription = "Unfavorite ${coin.name}",
-                    tint = Color.Red
+                    tint = Color.Red,
                 )
             } else {
                 Icon(
                     imageVector = Icons.Filled.FavoriteBorder,
-                    contentDescription = "Favorite ${coin.name}"
+                    contentDescription = "Favorite ${coin.name}",
                 )
             }
         }

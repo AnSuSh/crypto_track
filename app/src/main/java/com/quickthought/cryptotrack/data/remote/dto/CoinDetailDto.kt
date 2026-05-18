@@ -9,11 +9,13 @@ data class CoinDetailDto(
     val name: String,
     val symbol: String,
     val image: ImageSource,
-    @SerializedName("market_data") val marketData: MarketData
+    @SerializedName("market_data") val marketData: MarketData,
 )
 
 @Keep
-data class ImageSource(val large: String)
+data class ImageSource(
+    val large: String,
+)
 
 @Keep
 data class MarketData(
@@ -21,5 +23,5 @@ data class MarketData(
     @SerializedName("price_change_percentage_24h") val priceChange24h: Double,
     @SerializedName("market_cap") val marketCap: Map<String, Double>,
     @SerializedName("high_24h") val high24h: Map<String, Double>,
-    @SerializedName("low_24h") val low24h: Map<String, Double>
+    @SerializedName("low_24h") val low24h: Map<String, Double>,
 )

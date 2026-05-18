@@ -37,7 +37,7 @@ import com.quickthought.cryptotrack.presentation.util.shimmerBrush
 @Composable
 fun CoinListScreen(
     navController: NavController,
-    viewModel: CoinListViewModel = hiltViewModel()
+    viewModel: CoinListViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.value
     val brush = shimmerBrush()
@@ -54,9 +54,10 @@ fun CoinListScreen(
                     OutlinedTextField(
                         value = query,
                         onValueChange = { viewModel.updateSearchQuery(it) },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .animateContentSize(),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .animateContentSize(),
                         singleLine = true,
                         placeholder = { Text(text = "Search") },
                     )
@@ -77,24 +78,25 @@ fun CoinListScreen(
                         Icon(
                             imageVector = Icons.Default.Cancel,
                             contentDescription = "Cancel Search",
-                            modifier = Modifier.animateContentSize()
+                            modifier = Modifier.animateContentSize(),
                         )
                     } else {
                         Icon(
                             imageVector = Icons.Default.Search,
                             contentDescription = "Search",
-                            modifier = Modifier.animateContentSize()
+                            modifier = Modifier.animateContentSize(),
                         )
                     }
                 }
-            }
+            },
         )
 
         // Content list
         LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 56.dp) // leave space for the top bar
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(top = 56.dp), // leave space for the top bar
         ) {
             if (state.isLoading) {
                 // Show 10 shimmer items while loading
@@ -107,10 +109,11 @@ fun CoinListScreen(
                     item {
                         Text(
                             text = "No coins found.",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(20.dp),
-                            textAlign = TextAlign.Center
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(20.dp),
+                            textAlign = TextAlign.Center,
                         )
                     }
                 } else {
@@ -122,7 +125,7 @@ fun CoinListScreen(
                             },
                             onFavoriteClick = {
                                 viewModel.toggleFavorite(coin.id)
-                            }
+                            },
                         )
                     }
                 }
@@ -134,10 +137,11 @@ fun CoinListScreen(
                 text = state.error,
                 color = MaterialTheme.colorScheme.error,
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-                    .align(Alignment.Center)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                        .align(Alignment.Center),
             )
         }
     }

@@ -11,5 +11,5 @@ data class Coin(
     val low24h: Double = 0.0,
     val marketCap: Double = 0.0,
     // New field to mark favorites in UI (default false to avoid breaking existing flows)
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean = false,
 )

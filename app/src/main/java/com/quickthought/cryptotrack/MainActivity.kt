@@ -36,18 +36,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     // Remove activity-level top bar so individual screens can provide their own app bars
                     topBar = {},
-                    contentWindowInsets = WindowInsets(0.dp)
+                    contentWindowInsets = WindowInsets(0.dp),
                 ) { innerPadding ->
                     val navController = rememberNavController()
                     Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .safeDrawingPadding()
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .safeDrawingPadding(),
                     ) {
                         NavHost(
                             navController = navController,
                             startDestination = Screen.CoinListScreen.route,
-                            modifier = Modifier.padding(innerPadding)
+                            modifier = Modifier.padding(innerPadding),
                         ) {
                             composable(Screen.CoinListScreen.route) {
                                 CoinListScreen(navController = navController)
