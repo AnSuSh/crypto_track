@@ -60,6 +60,9 @@ android {
             isDebuggable = true
             isDefault = true
             versionNameSuffix = "-debug"
+            // Google's official Test ID for development
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+            buildConfigField("String", "AD_UNIT_ID", "ca-app-pub-3940256099942544/9214589741")
         }
         release {
             isMinifyEnabled = true
@@ -70,6 +73,9 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
+            // Injects the real ID from local.properties, falls back to test ID if missing
+            manifestPlaceholders["admobAppId"] = keystoreProperties["ADMOB_APP_ID"] ?: "ca-app-pub-3940256099942544~3347511713"
+            buildConfigField("String", "AD_UNIT_ID", "ca-app-pub-3940256099942544/9214589741")
         }
     }
     compileOptions {
@@ -97,6 +103,9 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.icons)
     implementation(libs.androidx.activity.compose)
+
+    implementation(libs.google.gms.ads)
+//    implementation(libs.ads.mobile.sdk)
 
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.android)

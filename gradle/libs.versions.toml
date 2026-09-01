@@ -14,6 +14,8 @@ androidXLifecycle = "2.10.0"
 androidXNavigation = "2.9.6"
 androidXRoom = "2.7.0"
 
+googleAds = "24.1.0"
+
 # Hilt library
 hiltAndroid = "2.57.2"
 hiltAndroidArtifacts = "1.3.0"
@@ -63,6 +65,8 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidXRoom" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidXRoom" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidXRoom" }
+
+google-gms-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "googleAds" }
 
 # Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }

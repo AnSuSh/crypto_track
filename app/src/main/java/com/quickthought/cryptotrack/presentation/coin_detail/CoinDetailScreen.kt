@@ -23,17 +23,19 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.quickthought.cryptotrack.domain.model.Coin
 import com.quickthought.cryptotrack.presentation.coin_detail.components.CoinChart
 import com.quickthought.cryptotrack.presentation.coin_detail.components.CoinDetailHeader
+import com.quickthought.cryptotrack.presentation.components.BannerAdView
 
 @Composable
 fun CoinDetailScreen(
-    viewModel: CoinDetailViewModel = hiltViewModel()
+    viewModel: CoinDetailViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.value
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
     ) {
         state.coinDetail?.let { data ->
             // 1. Header Section
@@ -42,14 +44,23 @@ fun CoinDetailScreen(
             // 2. Chart Section
             CoinChart(
                 prices = data.chartData.yValues.map { it.toDouble() },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(250.dp)
-                    .padding(16.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(250.dp)
+                        .padding(16.dp),
             )
 
             // 3. Stats Section (Market Cap, Rank, etc.)
             CoinStats(coin = data.coin)
+
+            // 4. Ad Section
+            BannerAdView(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+            )
         }
 
         if (state.isLoading) {
